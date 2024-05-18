@@ -27,7 +27,9 @@ jobs:
     - uses: snyk/actions/setup@master
     - name: Install Python dependencies with Poetry
       working-directory: pygoat
-      run: poetry install -v
+      run: |
+        pwd
+        poetry install -v
     - name: Run tests
       run: poetry run pytest
     - name: Test dependencies with Snyk
