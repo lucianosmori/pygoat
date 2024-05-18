@@ -26,7 +26,12 @@ jobs:
       run: pip install -r requirements.txt
     - name: Test dependencies with Snyk
       run: |
-        snyk test --severity-threshold=critical || exit 1
+        snyk test || exit 1
+      env:
+        SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
+    - name: Run Snyk fix if there's an error
+      if: ${{ failure() }}
+      run: snyk fix
       env:
         SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
     - name: Monitor dependencies for security issues with Snyk
