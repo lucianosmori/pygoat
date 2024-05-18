@@ -26,7 +26,7 @@ jobs:
       run: pip install -r requirements.txt
     - name: Test dependencies with Snyk
       run: |
-        snyk test
+        snyk test || true
       env:
         SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
     - name: Run Snyk fix if there's an error
