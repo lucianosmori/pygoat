@@ -13,8 +13,8 @@ jobs:
   dependencies-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@latest
-    - uses: actions/setup-python@lastest
+    - uses: actions/checkout@v4.1.6
+    - uses: actions/setup-python@v5.1.0
       with:
         python-version: 3.8
     - name: Install Poetry
