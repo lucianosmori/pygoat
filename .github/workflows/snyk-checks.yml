@@ -17,21 +17,13 @@ jobs:
     - uses: actions/setup-python@v5.1.0
       with:
         python-version: 3.8
-    - name: Install Poetry
-      run: curl -sSL https://install.python-poetry.org | python3 -
     - name: Show environment
       run: | 
         python --version
         pip --version
-        poetry --version
     - uses: snyk/actions/setup@master
-    - name: Install Python dependencies with Poetry
-      working-directory: pygoat
-      run: |
-        pwd
-        poetry install -v
-    - name: Run tests
-      run: poetry run pytest
+    - name: Install dependencies
+      run: pip install -r requirements.txt
     - name: Test dependencies with Snyk
       run: snyk test
       env:
