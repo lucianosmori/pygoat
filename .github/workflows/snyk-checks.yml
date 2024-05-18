@@ -3,6 +3,8 @@ name: Test dependencies for security issues with Snyk
 on: 
   push:
   workflow_dispatch:
+  pull_request:
+    branches: [ master ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -11,8 +13,8 @@ jobs:
   dependencies-check:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
+    - uses: actions/checkout@latest
+    - uses: actions/setup-python@lastest
       with:
         python-version: 3.8
     - name: Install Poetry
