@@ -25,12 +25,13 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: Test dependencies with Snyk
-      run: |
-        snyk test || true
+      id: snyk_test
+      run: snyk test 
+      continue-on-error: true
       env:
         SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
     - name: Run Snyk fix if there's an error
-      if: ${{ failure() }}
+      if: steps.snyk_test.outcome == 'failure'
       run: snyk fix
       env:
         SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
