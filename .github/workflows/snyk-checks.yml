@@ -3,8 +3,6 @@ name: Test dependencies for security issues with Snyk
 on: 
   push:
   workflow_dispatch:
-  pull_request:
-    branches: [ master ]
 
 env:
   CARGO_TERM_COLOR: always
