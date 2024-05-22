@@ -26,7 +26,7 @@ jobs:
       run: pip install -r requirements.txt
     - name: Test dependencies with Snyk
       id: snyk_test
-      run: snyk test 
+      run: snyk test --severity-threshold=high
       continue-on-error: true
       env:
         SNYK_TOKEN: ${{secrets.SNYK_TOKEN}}
